@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# markdown-viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
 
-## Available Scripts
+SPA en React que visualiza secciones de documentos Markdown estructurados, usa el contenido de `/markdowns`, y variables de `/markdowns/Setting.md`, para mostrar propuestas o proyectos de manera profesional, siguiendo Atomic Design. Cada vez que actualices los `.md` y hagas deploy, la web se actualizará.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ¿Cómo configurar el repo para usar GitHub Pages?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Repositorio público en GitHub**
+   - Sube todo tu proyecto (incluyendo `/markdowns/*`, `/src`, etc.) a un nuevo repo en GitHub.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Instala dependencias y verifica build local (opcional)**
+   ```bash
+   npm install
+   npm run build
+   ```
 
-### `npm test`
+3. **Agrega la propiedad `homepage` a `package.json`:**
+   - Por ejemplo, si tu repo es `https://github.com/usuario/tu-repo`, pon esto en `package.json`:
+     ```json
+     "homepage": "https://usuario.github.io/tu-repo"
+     ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Agrega o completa el workflow de GitHub Actions** en `.github/workflows/build.yml`:
 
-### `npm run build`
+   ```yaml
+   name: Build and Deploy to GitHub Pages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   on:
+     push:
+       branches: [main]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   jobs:
+     build-and-deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - name: Instalar dependencias
+           run: npm install
+         - name: Generar Control de Cambios
+           run: node scripts/generate-control-cambios.js || true
+         - name: Build
+           run: npm run build
+         - name: Deploy to GitHub Pages
+           uses: peaceiris/actions-gh-pages@v3
+           with:
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./build
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. **Activa GitHub Pages**
+   - En la configuración del repo (Settings → Pages), selecciona como fuente la rama `gh-pages`. El workflow creará automáticamente esa rama.
 
-### `npm run eject`
+6. **Espera a que la acción termine y accede a tu web desde:**
+   - `https://usuario.github.io/tu-repo/`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Notas importantes
+- Edita/agrega tus archivos `.md` y haz `push` para que el Action vuelva a desplegar (incluido el control de cambios automático).
+- Cualquier cambio en `markdowns/Setting.md` o cualquier otro `.md` se refleja en el siguiente deploy.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+¡Listo! Tu SPA servirá la documentación markdown actualizada y profesional desde GitHub Pages, con todo el flujo automatizado.
