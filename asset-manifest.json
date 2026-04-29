@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/DIOLINK/Idea-pro/static/css/main.6bcb9d63.css",
+    "main.js": "/DIOLINK/Idea-pro/static/js/main.50bfb95f.js",
+    "static/js/453.7b82ffc5.chunk.js": "/DIOLINK/Idea-pro/static/js/453.7b82ffc5.chunk.js",
+    "static/media/logo.png": "/DIOLINK/Idea-pro/static/media/logo.209e5e35750031c1d33e.png",
+    "index.html": "/DIOLINK/Idea-pro/index.html",
+    "main.6bcb9d63.css.map": "/DIOLINK/Idea-pro/static/css/main.6bcb9d63.css.map",
+    "main.50bfb95f.js.map": "/DIOLINK/Idea-pro/static/js/main.50bfb95f.js.map",
+    "453.7b82ffc5.chunk.js.map": "/DIOLINK/Idea-pro/static/js/453.7b82ffc5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6bcb9d63.css",
+    "static/js/main.50bfb95f.js"
+  ]
+}
