@@ -1,7 +1,7 @@
 | Fecha       | Archivo     | Autor       | Mensaje Commit                      |
 |-------------|-------------|-------------|-------------------------------------|
 | 2026-04-29 | 10.0.md | Roger BC | feat: Add project objectives and justification documentation |
-| 2026-04-29 | 2.0.md | Roger BC | fix: Corregir el encabezado de la sección de objetivos del proyecto |
+| 2026-04-29 | 2.0.md | Roger BC | feat: Actualizar el registro de cambios con nuevas entradas de documentación |
 | 2026-04-29 | 2.0.md | Roger BC | feat: Add project objectives and justification documentation |
 | 2026-04-29 | 3.0.md | Roger BC | feat: Add project objectives and justification documentation |
 | 2026-04-29 | 4.0.md | Roger BC | feat: Add project objectives and justification documentation |

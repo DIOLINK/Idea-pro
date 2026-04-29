@@ -7,6 +7,7 @@ function App() {
   const [settings, setSettings] = useState({});
   const [sections, setSections] = useState({});
   const [markdownSections, setMarkdownSections] = useState([]);
+  const [controlCambios, setControlCambios] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,6 +27,10 @@ function App() {
       })
       .then(results => {
         setSections(Object.fromEntries(results.filter(([_, t]) => t)));
+        // Cargar control-cambios.md al final
+        fetch(process.env.PUBLIC_URL + '/markdowns/control-cambios.md')
+          .then(r => r.ok ? r.text() : null)
+          .then(setControlCambios);
         setLoading(false);
       });
   }, []);
@@ -64,6 +69,12 @@ function App() {
                 <ReactMarkdown>{sections[sec]}</ReactMarkdown>
               </section>
             : null
+        )}
+        {controlCambios && (
+          <section className="bg-yellow-50 border-2 border-yellow-300 rounded p-4 shadow mt-10">
+            <h2 className="font-bold text-lg mb-2 text-yellow-700">Control de Cambios</h2>
+            <ReactMarkdown>{controlCambios}</ReactMarkdown>
+          </section>
         )}
       </div>
       {/* Pie de página tabla de firmas */}
