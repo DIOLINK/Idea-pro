@@ -21,7 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.github/workflows/build.yml
 _idea/Captura-current.png
 .gitignore
 package-lock.json
