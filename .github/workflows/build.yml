@@ -8,11 +8,15 @@ jobs:
   generate-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Instalar dependencias Node
         run: npm install || true
       - name: Generar Control de Cambios
         run: node scripts/generate-control-cambios.js || true
       - name: Build SPA
         run: npm run build
-      # Aquí puedes agregar el deploy a Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
