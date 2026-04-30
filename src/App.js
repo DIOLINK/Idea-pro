@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import HomePage from './components/pages/HomePage';
+import logo from './assets/logo.png';
 import Avatar from './components/atoms/Avatar';
 import InfoHeader from './components/molecules/InfoHeader';
-import SectionsList from './components/organisms/SectionsList';
-import ControlCambiosBlock from './components/organisms/ControlCambiosBlock';
 import SignatureBlock from './components/molecules/SignatureBlock';
-import logo from './assets/logo.png';
+import ControlCambiosBlock from './components/organisms/ControlCambiosBlock';
+import SectionsList from './components/organisms/SectionsList';
+import HomePage from './components/pages/HomePage';
 import { fetchSettings } from './utils/settingsParser';
 
 function App() {
@@ -18,21 +18,21 @@ function App() {
   useEffect(() => {
     fetchSettings().then(setSettings);
     fetch(process.env.PUBLIC_URL + '/markdowns/index.json')
-      .then(res => (res.ok ? res.json() : []))
-      .then(secs => {
+      .then((res) => (res.ok ? res.json() : []))
+      .then((secs) => {
         setMarkdownSections(secs);
         return Promise.all(
-          secs.map(section =>
+          secs.map((section) =>
             fetch(process.env.PUBLIC_URL + '/markdowns/' + section)
-              .then(r => (r.ok ? r.text() : null))
-              .then(text => [section, text])
-          )
+              .then((r) => (r.ok ? r.text() : null))
+              .then((text) => [section, text]),
+          ),
         );
       })
-      .then(results => {
+      .then((results) => {
         setSections(Object.fromEntries(results.filter(([_, t]) => t)));
         fetch(process.env.PUBLIC_URL + '/markdowns/control-cambios.md')
-          .then(r => (r.ok ? r.text() : null))
+          .then((r) => (r.ok ? r.text() : null))
           .then(setControlCambios);
         setLoading(false);
       });
@@ -52,7 +52,7 @@ function App() {
     <div className="flex items-center border rounded p-2 mb-4">
       <Avatar src={logo} alt="Logo" />
       <div className="flex-1 text-center">
-        <h1 className="text-2xl font-semibold">Idea Proyecto</h1>
+        <h1 className="text-3xl font-semibold">Idea Proyecto</h1>
         <InfoHeader
           alumno={settings.alumno}
           profesor={settings.profesor}
@@ -69,9 +69,7 @@ function App() {
   );
 
   // Control de Cambios
-  const cambiosComponent = (
-    <ControlCambiosBlock markdown={controlCambios} />
-  );
+  const cambiosComponent = <ControlCambiosBlock markdown={controlCambios} />;
 
   // Footer: Signature blocks
   const footer = (
