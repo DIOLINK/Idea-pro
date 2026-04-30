@@ -32,7 +32,7 @@ for (let i = 1; i <= 6; ++i) headingMap[`h${i}`] = headingRenderer(i);
 export default function ControlCambiosBlock({ markdown }) {
   if (!markdown) return null;
   return (
-    <Card className="bg-yellow-50 border-yellow-300">
+    <Card className="bg-yellow-50 border-yellow-300 mt-6">
       <h2 className="font-bold text-lg mb-2 text-yellow-700">
         Control de Cambios
       </h2>

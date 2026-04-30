@@ -12,18 +12,18 @@ body {
 
 /* Tarjetas (Card) */
 .card-theme {
-  @apply bg-card-light text-primary-light border border-border-light;
+  @apply bg-card-light text-primary-light border border-border-light p-6 mb-8;
 }
 .dark .card-theme {
-  @apply bg-card-dark text-primary-dark border border-border-dark;
+  @apply bg-card-dark text-primary-dark border border-border-dark p-6 mb-8;
 }
 
 /* Mejorar contraste en markdown */
 .prose {
-  @apply text-primary-light;
+  @apply text-primary-light mb-8;
 }
 .dark .prose {
-  @apply text-primary-dark;
+  @apply text-primary-dark mb-8;
 }
 
 /* Botones de acento */
