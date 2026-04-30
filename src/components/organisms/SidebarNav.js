@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import FloatingButton from '../atoms/FloatingButton';
 import SidebarContainer from '../atoms/SidebarContainer';
 import SidebarMenu from '../molecules/SidebarMenu';
@@ -8,10 +8,10 @@ function buildIndexTree(headings) {
   // headings: [{id, label, level, numberStr}] // ejemplo: 1.0, 1.1
   const root = [];
   const nodes = {};
-  headings.forEach(h => {
-    nodes[h.numberStr] = {...h, children: []};
+  headings.forEach((h) => {
+    nodes[h.numberStr] = { ...h, children: [] };
   });
-  headings.forEach(h => {
+  headings.forEach((h) => {
     const parts = h.numberStr.split('.');
     if (parts.length === 1) {
       root.push(nodes[h.numberStr]);
@@ -28,14 +28,22 @@ function buildIndexTree(headings) {
 }
 
 function getHeadingsFromDocument() {
-  // Busca los headings con data-index-number y texto visible
+  // Busca los headings con data-index-number y texto visible, evitando duplicados
   const els = Array.from(document.querySelectorAll('[data-index-number]'));
-  return els.map(el => ({
-    id: el.id,
-    label: el.textContent,
-    numberStr: el.getAttribute('data-index-number') || '',
-    level: parseInt(el.tagName.replace('H', '')) || 2,
-  }));
+  const seen = new Set();
+  const headings = [];
+  for (const el of els) {
+    const numberStr = el.getAttribute('data-index-number') || '';
+    if (!numberStr || seen.has(numberStr)) continue;
+    seen.add(numberStr);
+    headings.push({
+      id: el.id,
+      label: el.textContent,
+      numberStr,
+      level: parseInt(el.tagName.replace('H', '')) || 2,
+    });
+  }
+  return headings;
 }
 
 export default function SidebarNav() {
@@ -54,7 +62,7 @@ export default function SidebarNav() {
   }, [refreshIndex]);
 
   // Scroll suave al elemento correspondiente al seleccionar
-  const handleSelect = item => {
+  const handleSelect = (item) => {
     setOpen(false);
     if (item.id) {
       const el = document.getElementById(item.id);
@@ -66,14 +74,16 @@ export default function SidebarNav() {
 
   return (
     <>
-      {!open && <FloatingButton onClick={() => setOpen(true)}>
-        {/* icon hamburger */}
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <rect y="4" width="24" height="3" rx="1.5" fill="#fff" />
-          <rect y="10" width="24" height="3" rx="1.5" fill="#fff" />
-          <rect y="16" width="24" height="3" rx="1.5" fill="#fff" />
-        </svg>
-      </FloatingButton>}
+      {!open && (
+        <FloatingButton onClick={() => setOpen(true)}>
+          {/* icon hamburger */}
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <rect y="4" width="24" height="3" rx="1.5" fill="#fff" />
+            <rect y="10" width="24" height="3" rx="1.5" fill="#fff" />
+            <rect y="16" width="24" height="3" rx="1.5" fill="#fff" />
+          </svg>
+        </FloatingButton>
+      )}
       <SidebarContainer open={open} onClose={() => setOpen(false)}>
         <h3 className="mb-4 text-lg font-bold text-blue-700">Navegación</h3>
         <SidebarMenu items={items} onSelect={handleSelect} />
