@@ -1,3 +1,4 @@
+import React from 'react';
 import Card from '../atoms/Card';
 import ReactMarkdown from 'react-markdown';
 // --- reutiliza el headingMap para enriquecer headings también en control de cambios ---
