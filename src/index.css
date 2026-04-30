@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-background-light text-primary-light;
+}
+
+.dark body {
+  @apply bg-background-dark text-primary-dark;
+}
+
+/* Tarjetas (Card) */
+.card-theme {
+  @apply bg-card-light text-primary-light;
+}
+.dark .card-theme {
+  @apply bg-card-dark text-primary-dark;
+}
+
+/* Mejorar contraste en markdown */
+.prose {
+  @apply text-primary-light;
+}
+.dark .prose {
+  @apply text-primary-dark;
+}
+
 /* Evita que el texto largo se desborde en markdown, pre y code */
 .markdown-body,
 .markdown-body * {
