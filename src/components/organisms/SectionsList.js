@@ -44,7 +44,7 @@ export default function SectionsList({ markdownSections, sections }) {
       {markdownSections.map((sec) =>
         sections[sec] ? (
           <Card key={sec}>
-            <div className="prose prose-neutral max-w-none dark:prose-invert">
+            <div className="prose max-w-none">
               <ReactMarkdown components={headingMap}>
                 {sections[sec]}
               </ReactMarkdown>

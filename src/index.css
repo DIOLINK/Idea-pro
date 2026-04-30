@@ -12,10 +12,10 @@ body {
 
 /* Tarjetas (Card) */
 .card-theme {
-  @apply bg-card-light text-primary-light;
+  @apply bg-card-light text-primary-light border border-border-light;
 }
 .dark .card-theme {
-  @apply bg-card-dark text-primary-dark;
+  @apply bg-card-dark text-primary-dark border border-border-dark;
 }
 
 /* Mejorar contraste en markdown */
@@ -24,6 +24,14 @@ body {
 }
 .dark .prose {
   @apply text-primary-dark;
+}
+
+/* Botones de acento */
+.button-accent {
+  @apply bg-accent-light text-white;
+}
+.dark .button-accent {
+  @apply bg-accent-dark text-black;
 }
 
 /* Evita que el texto largo se desborde en markdown, pre y code */
