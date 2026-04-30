@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-background-light text-primary-light;
+}
+
+.dark body {
+  @apply bg-background-dark text-primary-dark;
+}
+
+/* Tarjetas (Card) */
+.card-theme {
+  @apply bg-card-light text-primary-light border border-border-light p-6 mb-8;
+}
+.dark .card-theme {
+  @apply bg-card-dark text-primary-dark border border-border-dark p-6 mb-8;
+}
+
+/* Mejorar contraste en markdown */
+.prose {
+  @apply text-primary-light mb-8;
+}
+.dark .prose {
+  @apply text-primary-dark mb-8;
+}
+
+/* Botones de acento */
+.button-accent {
+  @apply bg-accent-light text-white;
+}
+.dark .button-accent {
+  @apply bg-accent-dark text-black;
+}
+
+/* Evita que el texto largo se desborde en markdown, pre y code */
+.markdown-body,
+.markdown-body * {
+  word-break: break-word;
+}
+pre,
+code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
