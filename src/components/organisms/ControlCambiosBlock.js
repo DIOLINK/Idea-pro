@@ -47,13 +47,13 @@ export default function ControlCambiosBlock({ markdown }) {
       </h2>
       {table ? (
         <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border-separate border-spacing-y-2">
+          <table className="min-w-full table-auto border-separate border-spacing-y-2 rounded-lg overflow-hidden shadow-sm">
             <thead>
               <tr>
                 {table.headers.map((header, idx) => (
                   <th
                     key={idx}
-                    className="px-4 py-2 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-t text-left"
+                    className="px-4 py-2 bg-yellow-200 dark:bg-yellow-800 text-yellow-900 dark:text-yellow-100 border border-yellow-300 dark:border-yellow-700 font-semibold text-left first:rounded-tl-lg last:rounded-tr-lg"
                   >
                     {header}
                   </th>
@@ -62,11 +62,18 @@ export default function ControlCambiosBlock({ markdown }) {
             </thead>
             <tbody>
               {table.rows.map((row, i) => (
-                <tr key={i} className="hover:bg-yellow-50">
+                <tr
+                  key={i}
+                  className={
+                    i % 2 === 0
+                      ? 'bg-white dark:bg-yellow-900/10'
+                      : 'bg-yellow-50 dark:bg-yellow-900/30'
+                  }
+                >
                   {row.map((cell, j) => (
                     <td
                       key={j}
-                      className="px-4 py-2 border border-yellow-100 text-gray-700 dark:text-gray-200 bg-white dark:bg-yellow-900/20"
+                      className="px-4 py-2 border border-yellow-100 dark:border-yellow-800 text-gray-700 dark:text-gray-100"
                     >
                       {cell}
                     </td>
