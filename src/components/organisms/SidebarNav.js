@@ -100,7 +100,9 @@ export default function SidebarNav() {
         </FloatingButton>
       )}
       <SidebarContainer open={open} onClose={() => setOpen(false)}>
-        <h3 className="mb-4 text-lg font-bold text-blue-700">Navegación</h3>
+        <h3 className="mb-4 text-lg font-bold text-primary-light dark:text-primary-dark">
+          Navegación
+        </h3>
         <SidebarMenu items={items} onSelect={handleSelect} />
       </SidebarContainer>
     </>
