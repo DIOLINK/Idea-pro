@@ -73,9 +73,12 @@ function App() {
 
   // Footer: Signature blocks
   const footer = (
-    <footer className="mt-8 border-t pt-4 text-sm grid grid-cols-2 gap-4">
+    <footer className="mt-8 border-t pt-4 text-sm grid grid-cols-5 gap-4 items-center">
+      <div></div>
       <SignatureBlock nombre={settings.alumno} rol="Alumno" />
+      <div></div>
       <SignatureBlock nombre={settings.profesor} rol="Profesor" />
+      <div></div>
     </footer>
   );
 
