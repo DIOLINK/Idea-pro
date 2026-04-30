@@ -29,16 +29,21 @@ function buildIndexTree(headings) {
 
 function getHeadingsFromDocument() {
   // Busca los headings con data-index-number y texto visible, evitando duplicados
-  const els = Array.from(document.querySelectorAll('[data-index-number]'));
+  // Solo headings H1-H6 con data-index-number
+  const els = Array.from(
+    document.querySelectorAll('[data-index-number]'),
+  ).filter((el) => /^H[1-6]$/.test(el.tagName));
   const seen = new Set();
   const headings = [];
   for (const el of els) {
     const numberStr = el.getAttribute('data-index-number') || '';
     if (!numberStr || seen.has(numberStr)) continue;
     seen.add(numberStr);
+    let label = (el.innerText || '').trim();
+    if (!label) label = numberStr;
     headings.push({
       id: el.id,
-      label: el.textContent,
+      label,
       numberStr,
       level: parseInt(el.tagName.replace('H', '')) || 2,
     });
@@ -58,7 +63,17 @@ export default function SidebarNav() {
 
   useEffect(() => {
     refreshIndex();
-    // Podría eficientizar con ResizeObserver o evento custom si el doc cambia
+    // Observa cambios en el DOM para refrescar el índice automáticamente
+    const observer = new MutationObserver(() => {
+      refreshIndex();
+    });
+    // Observa todo el body, puedes ajustar el selector si tu contenido está en un div específico
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+    return () => observer.disconnect();
   }, [refreshIndex]);
 
   // Scroll suave al elemento correspondiente al seleccionar
