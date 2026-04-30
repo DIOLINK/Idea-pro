@@ -1,37 +1,30 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect } from 'react';
+import { useTheme } from './hooks/useTheme';
 
 export const ThemeContext = createContext({
-  theme: 'light',
+  theme: 'system',
+  resolvedTheme: 'light',
   setTheme: () => {},
+  isSystem: true,
 });
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light');
-
-  // Detecta preferencia del sistema
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => {
-      setTheme(e.matches ? 'dark' : 'light');
-    };
-    setTheme(mq.matches ? 'dark' : 'light');
-    mq.addEventListener('change', handleChange);
-    return () => mq.removeEventListener('change', handleChange);
-  }, []);
+  const { theme, resolvedTheme, setTheme, isSystem } = useTheme();
 
   // Aplica la clase dark al html
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-  }, [theme]);
+  }, [resolvedTheme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, isSystem }}>
       {children}
     </ThemeContext.Provider>
   );
 }
+
