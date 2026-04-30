@@ -43,7 +43,13 @@ export default function SectionsList({ markdownSections, sections }) {
     <div className="space-y-6">
       {markdownSections.map((sec) =>
         sections[sec] ? (
-          <Card key={sec}>\n            <div className="prose prose-neutral max-w-none dark:prose-invert">\n              <ReactMarkdown components={headingMap}>\n                {sections[sec]}\n              </ReactMarkdown>\n            </div>\n          </Card>
+          <Card key={sec}>
+            <div className="prose prose-neutral max-w-none dark:prose-invert">
+              <ReactMarkdown components={headingMap}>
+                {sections[sec]}
+              </ReactMarkdown>
+            </div>
+          </Card>
         ) : null,
       )}
     </div>

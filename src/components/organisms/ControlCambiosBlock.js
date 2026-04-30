@@ -36,7 +36,13 @@ export default function ControlCambiosBlock({ markdown }) {
       <h2 className="font-bold text-lg mb-2 text-yellow-700">
         Control de Cambios
       </h2>
-      <div className="prose prose-neutral max-w-none dark:prose-invert">\n        <ReactMarkdown components={headingMap}>{markdown}</ReactMarkdown>\n      </div>
+      <div className="prose prose-neutral max-w-none dark:prose-invert">
+        <ReactMarkdown components={headingMap}>
+          {Array.isArray(markdown)
+            ? markdown.join('')
+            : (markdown || '').toString()}
+        </ReactMarkdown>
+      </div>
     </Card>
   );
 }
