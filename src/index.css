@@ -1,37 +1,126 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Plain CSS for CDN mode: utility classes come from CDN; this file provides
+   replacements for @apply usages and custom helper classes. */
 
-body {
-  @apply bg-background-light text-primary-light;
+html,
+body,
+#root {
+  height: 100%;
 }
-
+body {
+  background-color: #f8f9fa; /* background.light */
+  color: #000000; /* primary.light */
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial;
+}
 .dark body {
-  @apply bg-background-dark text-primary-dark;
+  background-color: #2d3748; /* background.dark */
+  color: #e2e8f0; /* primary.dark */
 }
 
 /* Tarjetas (Card) */
 .card-theme {
-  @apply bg-card-light text-primary-light border border-border-light p-6 mb-8;
+  background-color: #ffffff;
+  color: #22223b;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 .dark .card-theme {
-  @apply bg-card-dark text-primary-dark border border-border-dark p-6 mb-8;
+  background-color: #4a5568;
+  color: #e2e8f0;
+  border-color: #718096;
 }
 
-/* Mejorar contraste en markdown */
+/* Dark-mode visual tweaks: improve contrast, remove harsh black blocks, style headings, tables and code */
+.dark .card-theme {
+  /* slightly lighter than page background to separate cards */
+  background-color: #263241;
+  color: #e6eef6;
+  border-color: #334652;
+}
+.dark .card-theme h1,
+.dark .card-theme h2,
+.dark .card-theme h3,
+.dark .card-theme h4 {
+  background: transparent;
+  color: #f1f5f9;
+  margin: 0 0 0.5rem 0;
+}
+
+/* Markdown (github-markdown-css) dark adjustments */
+.dark .markdown-body {
+  color: #e6eef6;
+  background: transparent !important;
+}
+.dark .markdown-body h1,
+.dark .markdown-body h2,
+.dark .markdown-body h3,
+.dark .markdown-body h4 {
+  color: #ffffff;
+}
+.dark .markdown-body pre,
+.dark .markdown-body code {
+  background: #0f1720;
+  color: #e6eef6;
+  border: 1px solid #22303a;
+}
+.dark .markdown-body table {
+  border-color: #334652;
+}
+.dark .markdown-body th,
+.dark .markdown-body td {
+  border-color: #334652;
+}
+
+/* Make list markers and links visible in dark */
+.dark .markdown-body a {
+  color: #93c5fd;
+}
+.dark .markdown-body ul li::marker,
+.dark .markdown-body ol li::marker {
+  color: #a3bffa;
+}
+
+/* Ensure buttons remain readable */
+.dark .button-accent {
+  background-color: #f59e0b; /* amber-500 for contrast */
+  color: #06202a;
+}
+
+/* Mejorar contraste en markdown (prose) */
 .prose {
-  @apply text-primary-light mb-8;
+  color: #22223b;
+  margin-bottom: 2rem;
 }
 .dark .prose {
-  @apply text-primary-dark mb-8;
+  color: #e2e8f0;
+}
+
+/* Integración con github-markdown-css */
+.markdown-body {
+  max-width: none;
+}
+.dark .markdown-body {
+  color: #e2e8f0;
 }
 
 /* Botones de acento */
 .button-accent {
-  @apply bg-accent-light text-white;
+  background-color: #63b3ed;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
 }
 .dark .button-accent {
-  @apply bg-accent-dark text-black;
+  background-color: #f6ad55;
+  color: #000;
 }
 
 /* Evita que el texto largo se desborde en markdown, pre y code */
@@ -46,4 +135,36 @@ code {
   overflow-x: auto;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Helper classes to match existing component classnames */
+.bg-card-light {
+  background-color: #ffffff;
+}
+.dark .bg-card-dark {
+  background-color: #4a5568;
+}
+.text-primary-light {
+  color: #5a5a81;
+}
+.dark .text-primary-dark {
+  color: #e2e8f0;
+}
+.border-border-light {
+  border-color: #e2e8f0;
+}
+.dark .border-border-dark {
+  border-color: #718096;
+}
+.bg-background-light {
+  background-color: #f8f9fa;
+}
+.dark .bg-background-dark {
+  background-color: #2d3748;
+}
+.bg-accent-light {
+  background-color: #63b3ed;
+}
+.dark .bg-accent-dark {
+  background-color: #f6ad55;
 }

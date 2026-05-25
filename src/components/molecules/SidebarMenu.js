@@ -9,7 +9,7 @@ export default function SidebarMenu({ items, onSelect }) {
       {items.map((item, idx) => (
         <li key={`${item.id}-${item.numberStr || ''}-${idx}`}>
           <button
-            className="block text-left px-2 py-1 rounded hover:bg-blue-50 w-full text-black font-semibold"
+            className="block text-left px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900 w-full text-primary-light dark:text-primary-dark font-semibold"
             onClick={() => onSelect(item)}
           >
             {item.label && item.label.trim() ? item.label : item.numberStr}

@@ -84,7 +84,7 @@ export default function ControlCambiosBlock({ markdown }) {
           </table>
         </div>
       ) : (
-        <div className="prose prose-neutral max-w-none dark:prose-invert">
+        <div className="markdown-body max-w-none">
           {Array.isArray(markdown)
             ? markdown.join('')
             : (markdown || '').toString()}
