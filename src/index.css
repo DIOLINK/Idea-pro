@@ -168,3 +168,70 @@ code {
 .dark .bg-accent-dark {
   background-color: #f6ad55;
 }
+
+/* Print styles: hide sidebars and floating UI, make main content full-width */
+@media print {
+  /* Ocultar barras laterales y navegación */
+  .sidebar,
+  .sidebar-container,
+  .SidebarContainer,
+  .sidebar-nav,
+  .SidebarNav {
+    display: none !important;
+  }
+
+  /* Ocultar elementos flotantes (botones, acciones, firmas) */
+  .floating-button,
+  .FloatingButton,
+  .floating,
+  .floating-action,
+  .FloatingAction {
+    display: none !important;
+  }
+
+  /* Contenido principal a ancho completo */
+  .main,
+  .content,
+  .app,
+  .main-layout,
+  .MainLayout,
+  .markdown-body,
+  .prose {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
+  }
+
+  /* Simplificar visual para impresión */
+  * {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* Evitar saltos dentro de bloques importantes */
+  .no-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* Clase utilitaria para impresión controlada vía JS */
+.printing .sidebar,
+.printing .sidebar-container,
+.printing .SidebarContainer,
+.printing .sidebar-nav {
+  display: none !important;
+}
+.printing .floating-button,
+.printing .FloatingButton,
+.printing .floating {
+  display: none !important;
+}
+.printing .main,
+.printing .content,
+.printing .app,
+.printing .main-layout {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+}
