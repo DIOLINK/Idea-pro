@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Idea-pro/static/css/main.0d73845d.css",
-    "main.js": "/Idea-pro/static/js/main.a59c0a1b.js",
-    "static/js/453.7b82ffc5.chunk.js": "/Idea-pro/static/js/453.7b82ffc5.chunk.js",
+    "main.css": "/Idea-pro/static/css/main.d3aa2883.css",
+    "main.js": "/Idea-pro/static/js/main.af8a9663.js",
+    "static/js/453.439d3b43.chunk.js": "/Idea-pro/static/js/453.439d3b43.chunk.js",
     "static/media/logo.png": "/Idea-pro/static/media/logo.209e5e35750031c1d33e.png",
     "index.html": "/Idea-pro/index.html",
-    "main.0d73845d.css.map": "/Idea-pro/static/css/main.0d73845d.css.map",
-    "main.a59c0a1b.js.map": "/Idea-pro/static/js/main.a59c0a1b.js.map",
-    "453.7b82ffc5.chunk.js.map": "/Idea-pro/static/js/453.7b82ffc5.chunk.js.map"
+    "main.d3aa2883.css.map": "/Idea-pro/static/css/main.d3aa2883.css.map",
+    "main.af8a9663.js.map": "/Idea-pro/static/js/main.af8a9663.js.map",
+    "453.439d3b43.chunk.js.map": "/Idea-pro/static/js/453.439d3b43.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d73845d.css",
-    "static/js/main.a59c0a1b.js"
+    "static/css/main.d3aa2883.css",
+    "static/js/main.af8a9663.js"
   ]
 }
