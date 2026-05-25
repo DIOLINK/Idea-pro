@@ -1,7 +1,7 @@
 export default function SidebarContainer({ open, onClose, children }) {
   return (
     <div
-      className={`fixed top-0 left-0 h-full w-72 bg-card-light dark:bg-card-dark shadow-2xl z-40 transition-transform duration-300 border-r border-border-light dark:border-border-dark ${open ? 'translate-x-0' : '-translate-x-full'}`}
+      className={`fixed top-0 left-0 h-full w-72 shadow-2xl z-40 transition-transform duration-300 border-r card-theme ${open ? 'translate-x-0' : '-translate-x-full'}`}
       role="navigation"
       aria-label="Índice del documento"
     >

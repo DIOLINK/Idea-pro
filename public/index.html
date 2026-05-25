@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -25,6 +25,24 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: { light: '#22223b', dark: '#e2e8f0' },
+              card: { light: '#ffffff', dark: '#4a5568' },
+              background: { light: '#f8f9fa', dark: '#2d3748' },
+              accent: { light: '#63b3ed', dark: '#f6ad55' },
+              border: { light: '#e2e8f0', dark: '#718096' },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
